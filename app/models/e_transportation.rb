@@ -3,12 +3,16 @@ class ETransportation < ApplicationRecord
   validates :sensor_type, presence: true, inclusion: { in: ["small", "medium", "big"] }
   validates :owner_id, presence: true, numericality: { only_integer: true }
   validates :in_zone, inclusion: { in: [true, false] }
-  validates :lost_sensor, inclusion: { in: [true, false] }
+  validates :lost_sensor, inclusion: { in: [true, false] }, if: :e_scooter?
 
   validate :sensor_type_restriction_for_e_scooter
   validate :lost_sensor_restriction_for_e_bike
 
   private
+
+  def e_scooter?
+    e_transportation_type == "e-scooter"
+  end
 
   def sensor_type_restriction_for_e_scooter
     if e_transportation_type == "e-scooter" && sensor_type == "medium"
