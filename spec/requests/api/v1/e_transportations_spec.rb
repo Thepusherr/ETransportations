@@ -30,9 +30,22 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(JSON.parse(response.body)["errors"]).to include("Sensor type cannot be 'medium' for e-scooter")
     end
-  end
 
-  # TODO add test with "E transportation type is not included in the list"
+    it 'returns an error when e_transportation_type is wrong' do
+      invalid_attributes = {
+        e_transportation_type: 'e-pickup',
+        sensor_type: 'medium',
+        owner_id: 1,
+        in_zone: true,
+        lost_sensor: false
+      }
+
+      post '/api/v1/e_transportations', params: { e_transportation: invalid_attributes }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)["errors"]).to include("E transportation type is not included in the list")
+    end
+  end
 
   describe "GET /api/v1/e_transportations" do
     it "returns all e-Transportations" do
