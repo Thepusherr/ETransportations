@@ -6,12 +6,19 @@ class ETransportation < ApplicationRecord
   validates :lost_sensor, inclusion: { in: [true, false] }
 
   validate :sensor_type_restriction_for_e_scooter
+  validate :lost_sensor_restriction_for_e_bike
 
   private
 
   def sensor_type_restriction_for_e_scooter
     if e_transportation_type == "e-scooter" && sensor_type == "medium"
       errors.add(:sensor_type, "cannot be 'medium' for e-scooter")
+    end
+  end
+
+  def lost_sensor_restriction_for_e_bike
+    if e_transportation_type == "e-bike" && lost_sensor
+      errors.add(:lost_sensor, "lost_sensor not supported for e-bike")
     end
   end
 end

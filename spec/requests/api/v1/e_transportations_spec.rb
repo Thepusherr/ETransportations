@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
 
   describe 'GET /api/v1/e_transportations/out_of_zone' do
     it 'returns grouped data for e-transportations out of the charging zone' do
-      ETransportation.create!(e_transportation_type: 'e-bike', sensor_type: 'small', owner_id: 1, in_zone: false, lost_sensor: false)
+      ETransportation.create!(e_transportation_type: 'e-bike', sensor_type: 'small', owner_id: 1, in_zone: false)
       ETransportation.create!(e_transportation_type: 'e-scooter', sensor_type: 'big', owner_id: 2, in_zone: false, lost_sensor: false)
       
       get '/api/v1/e_transportations/out_of_zone'
