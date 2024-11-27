@@ -28,6 +28,6 @@ class Api::V1::ETransportationsController < ApplicationController
 
   def storage
     # redis or active_record
-    @storage ||= DataStorageAdapter.new(:redis) # ENV.fetch('STORAGE_ADAPTER', 'redis').to_sym
+    @storage ||= DataStorageAdapter.new(:active_record) # ENV.fetch('STORAGE_ADAPTER', 'redis').to_sym
   end
 end

@@ -9,7 +9,7 @@ class ActiveRecordStorage
   end
 
   def transportations
-    ETransportation.all.as_json
+    ETransportation.all
   end
 
   def e_transportations_out_of_zone
