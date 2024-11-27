@@ -8,12 +8,12 @@ class ActiveRecordStorage
     end
   end
 
-  def transportations
+  def e_transportations
     ETransportation.all
   end
 
   def e_transportations_out_of_zone
-    transportations.where(in_zone: false)
+    e_transportations.where(in_zone: false)
                    .group(:e_transportation_type, :sensor_type)
                    .count
   end
