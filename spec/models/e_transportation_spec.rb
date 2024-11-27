@@ -7,9 +7,9 @@ RSpec.describe ETransportation, type: :model do
   it { should validate_inclusion_of(:in_zone).in_array([true, false]) }
   it { should validate_inclusion_of(:lost_sensor).in_array([true, false]) }
 
-  it "should not allow medium sensor for e_scooter" do
+  it "should not allow medium sensor for e-scooter" do
     e_transportation = ETransportation.new(
-      e_transportation_type: "e_scooter",
+      e_transportation_type: "e-scooter",
       sensor_type: "medium",
       owner_id: 1,
       in_zone: true,
@@ -17,6 +17,6 @@ RSpec.describe ETransportation, type: :model do
     )
 
     e_transportation.valid?
-    expect(e_transportation.errors.full_messages).to include("E transportation type is not included in the list")
+    expect(e_transportation.errors.full_messages).to include("Sensor type cannot be 'medium' for e-scooter")
   end
 end

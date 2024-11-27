@@ -4,7 +4,7 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
   describe 'POST /api/v1/e_transportations' do
     it 'creates a new e-transportation' do
       valid_attributes = {
-        e_transportation_type: 'e_scooter',
+        e_transportation_type: 'e-scooter',
         sensor_type: 'small',
         owner_id: 1,
         in_zone: true,
@@ -13,13 +13,12 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
 
       post '/api/v1/e_transportations', params: { e_transportation: valid_attributes }
 
-      puts response.body # Debugging line to check the response body for errors
       expect(response).to have_http_status(:created)
     end
 
-    it 'returns an error when sensor_type is medium for e_scooter' do
+    it 'returns an error when sensor_type is medium for e-scooter' do
       invalid_attributes = {
-        e_transportation_type: 'e_scooter',
+        e_transportation_type: 'e-scooter',
         sensor_type: 'medium',
         owner_id: 1,
         in_zone: true,
@@ -29,9 +28,11 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
       post '/api/v1/e_transportations', params: { e_transportation: invalid_attributes }
 
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)["errors"]).to include("E transportation type is not included in the list")
+      expect(JSON.parse(response.body)["errors"]).to include("Sensor type cannot be 'medium' for e-scooter")
     end
   end
+
+  # TODO add test with "E transportation type is not included in the list"
 
   describe "GET /api/v1/e_transportations" do
     it "returns all e-Transportations" do
