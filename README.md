@@ -17,4 +17,6 @@ curl -X POST http://localhost:3000/api/v1/e_transportations -d '{"e_transportati
 
 curl -X POST http://localhost:3000/api/v1/e_transportations -d '{"e_transportation": {"e_transportation_type": "e-scooter", "sensor_type": "big", "owner_id": 2, "in_zone": false, "lost_sensor": false}}' -H "Content-Type: application/json"  
 
+curl http://localhost:3000/api/v1/e_transportations
+
 curl http://localhost:3000/api/v1/e_transportations/out_of_zone
