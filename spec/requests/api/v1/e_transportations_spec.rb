@@ -63,7 +63,7 @@ RSpec.describe "Api::V1::ETransportations", type: :request do
       
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(
-        {"[\"e-bike\", \"small\"]"=>1, "[\"e-scooter\", \"big\"]"=>1}
+        { "[\"e-bike\", \"small\"]"=>1, "[\"e-scooter\", \"big\"]"=>1 }
       )
     end
   end

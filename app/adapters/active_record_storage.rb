@@ -2,7 +2,7 @@ class ActiveRecordStorage
   def save_transportation(data)
     e_transportation = ETransportation.new(data)
     if e_transportation.save
-      { message: 'Data saved successfully' }
+      { message: "Data saved successfully" }
     else
       { errors: e_transportation.errors.full_messages }
     end

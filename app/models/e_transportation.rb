@@ -1,9 +1,9 @@
 class ETransportation < ApplicationRecord
-  validates :e_transportation_type, presence: true, inclusion: { in: ["e-scooter", "e-bike"] }
-  validates :sensor_type, presence: true, inclusion: { in: ["small", "medium", "big"] }
+  validates :e_transportation_type, presence: true, inclusion: { in: [ "e-scooter", "e-bike" ] }
+  validates :sensor_type, presence: true, inclusion: { in: [ "small", "medium", "big" ] }
   validates :owner_id, presence: true, numericality: { only_integer: true }
   validates :in_zone, inclusion: { in: [true, false] }
-  validates :lost_sensor, inclusion: { in: [true, false] }, if: :e_scooter?
+  validates :lost_sensor, inclusion: { in: [ true, false ] }, if: :e_scooter?
 
   validate :sensor_type_restriction_for_e_scooter
   validate :lost_sensor_restriction_for_e_bike

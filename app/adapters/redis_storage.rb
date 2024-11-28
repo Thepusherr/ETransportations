@@ -2,7 +2,7 @@ class RedisStorage
   def save_transportation(data)
     key = "e_transportation:#{SecureRandom.uuid}"
     $redis.set(key, data.to_json, ex: 3600)
-    { message: 'Data saved successfully' }
+    { message: "Data saved successfully" }
   end
 
   def e_transportations
